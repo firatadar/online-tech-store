@@ -14,81 +14,83 @@
 
 .card-title {
   font-size: 1.2rem;
-  color: #003366; /* Başlık rengi */
+  color: #003366;
   font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: #4a4a4a;
+  margin-bottom: 0.75rem;
+}
+
+.price-text {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #0066cc;
 }
 
 .card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  padding: 0;
 }
 
-.card-body .btn {
-  margin-right: 0.5rem;
-  border-radius: 4px;
+.btn {
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
 }
 
-.card-body .btn-primary {
-  background: #004d99;
+.btn-primary {
+  background-color: #004d99;
   border: none;
-  transition: background-color 0.3s ease;
 }
 
-.card-body .btn-primary:hover {
-  background: #003366;
+.btn-primary:hover {
+  background-color: #003366;
 }
 
-.card-body .btn-secondary {
-  background: #0066cc;
+.btn-secondary {
+  background-color: #0066cc;
   border: none;
-  transition: background-color 0.3s ease;
 }
 
-.card-body .btn-secondary:hover {
-  background: #005bb5;
+.btn-secondary:hover {
+  background-color: #005bb5;
 }
 
 /* Görseller */
 .img-fluid {
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Görselin hafif gölgesi */
-}
-
-/* Yükleniyor Göstergesi */
-.spinner-border {
-  display: block;
-  margin: 2rem auto;
-  width: 3rem;
-  height: 3rem;
-  border-width: 0.3rem;
-}
-
-/* Ürün Bulunamadı Mesajı */
-.alert {
-  text-align: center;
-  font-size: 1.1rem;
-  background: #ffcc00;
-  color: #003366;
-  border: 1px solid #ffc107;
-  border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-height: 150px;
+  object-fit: cover;
 }
 
-/* Responsive Tasarım */
+.search-bar input {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 @media (max-width: 768px) {
   .row {
     flex-direction: column;
   }
 
-  .col-3,
-  .col-9 {
+  .col-md-3,
+  .col-md-6,
+  .col-md-3 {
     width: 100%;
     text-align: center;
   }
 
-  .card-body .btn {
-    margin-top: 0.5rem;
-    width: 100%;
+  .col-md-3.text-end {
+    text-align: center;
+  }
+
+  .btn {
+    margin-bottom: 0.5rem;
   }
 }

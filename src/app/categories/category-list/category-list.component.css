@@ -1,0 +1,50 @@
+/* Genel Ayarlar */
+.category-bar {
+    background-color: #f8f9fa; /* Açık gri arka plan */
+    border-bottom: 1px solid #ddd; /* Alt kenarlık */
+    padding: 0.5rem 0; /* Üst-alt boşluk */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+  }
+  
+  /* Liste Elemanları */
+  .category-bar .list-group-item {
+    border: none;
+    border-radius: 0;
+    color: #004d99; /* Link rengi */
+    font-weight: 500; /* Hafif kalın yazı */
+    padding: 0.5rem 1rem; /* İç boşluk */
+    transition: color 0.3s ease, background-color 0.3s ease; /* Hover animasyonu */
+  }
+  
+  /* Hover Durumu */
+  .category-bar .list-group-item:hover {
+    color: white;
+    background-color: #004d99; /* Hover arka plan */
+  }
+  
+  /* Aktif Durum */
+  .category-bar .list-group-item.active {
+    color: white;
+    background-color: #0066cc; /* Aktif kategori rengi */
+    font-weight: bold; /* Aktif kategori yazısını kalın yap */
+  }
+  
+  /* Responsive Tasarım */
+  .list-group-horizontal {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* Küçük ekranlar için sarma */
+  }
+  
+  @media (max-width: 768px) {
+    .list-group-horizontal {
+      flex-direction: column; /* Küçük ekranlarda dikey hale gelir */
+      align-items: flex-start;
+    }
+  
+    .category-bar .list-group-item {
+      width: 100%; /* Tam genişlik */
+      text-align: left; /* Dikey hizalama */
+    }
+  }
+  

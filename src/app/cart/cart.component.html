@@ -8,7 +8,7 @@
       <div class="col-9">
         <div class="card-body">
           <h5 class="card-title">{{ item.name }}</h5>
-          <p class="card-text">{{ item.description }}</p>
+          <p class="card-text" [innerHTML]="item.description"></p> 
           <button (click)="removeFromCart(item)" class="btn btn-danger">Remove</button>
         </div>
       </div>

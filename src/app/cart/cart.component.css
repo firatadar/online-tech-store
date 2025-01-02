@@ -1,0 +1,12 @@
+.card-title {
+    font-weight: bold; /* Kalın yazı */
+    font-size: 1.2rem; /* İsteğe bağlı: boyut artırma */
+    color: #003366; /* İsteğe bağlı: renk belirleme */
+  }
+
+  .card-text {
+    color: #4a4a4a; /* Koyu gri */
+    font-size: 0.95rem; /* İsteğe bağlı: Yazı boyutu */
+    line-height: 1.6; /* İsteğe bağlı: Satır aralığı */
+  }
+  
