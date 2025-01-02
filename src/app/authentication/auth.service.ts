@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Subject, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthResponse } from './auth-response.model';
 import { User } from './user.model';
@@ -11,22 +11,23 @@ import { User } from './user.model';
 export class AuthService {
 
   api_key = environment.api_key;
-  user = new BehaviorSubject<User|null>(null);
+  user = new BehaviorSubject<User | null>(null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.autoLogin();
+  }
 
   register(email: string, password: string) {
-
-      return this.http.post<AuthResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + this.api_key, {
-        email: email,
-        password: password,
-        returnSecureToken: true
-      }).pipe(
-        tap(response => {
-          this.handleUser(response.email, response.localId, response.idToken, response.expiresIn);
-        }),
-        catchError(this.handleError)
-      );
+    return this.http.post<AuthResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + this.api_key, {
+      email: email,
+      password: password,
+      returnSecureToken: true
+    }).pipe(
+      tap(response => {
+        this.handleUser(response.email, response.localId, response.idToken, response.expiresIn);
+      }),
+      catchError(this.handleError)
+    );
   }
 
   logout() {
@@ -34,11 +35,11 @@ export class AuthService {
     localStorage.removeItem("user");
   }
 
-  login(email:string, password: string) {
+  login(email: string, password: string) {
     return this.http.post<AuthResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + this.api_key, {
-        email: email,
-        password: password,
-        returnSecureToken: true
+      email: email,
+      password: password,
+      returnSecureToken: true
     }).pipe(
       tap(response => {
         this.handleUser(response.email, response.localId, response.idToken, response.expiresIn);
@@ -48,35 +49,40 @@ export class AuthService {
   }
 
   autoLogin() {
-    if(localStorage.getItem("user") == null) {
+    const userData = localStorage.getItem("user");
+    if (!userData) {
       return;
     }
 
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const user = JSON.parse(userData);
+    const loadedUser = new User(user.email, user.id, user._token, new Date(user._tokenExpirationDate));
 
-    const loadedUser = new User(user.email, user.id,user._token, new Date(user._tokenExpirationDate));
-
-    if(loadedUser.token) {
+    if (loadedUser.token) {
       this.user.next(loadedUser);
     }
+  }
+
+  getUserId(): string | null {
+    const currentUser = this.user.value;
+    return currentUser ? currentUser.id : null;
   }
 
   private handleError(err: HttpErrorResponse) {
     let message = "hata oluştu";
 
-    if(err.error.error) {
-      switch(err.error.error.message) {
+    if (err.error.error) {
+      switch (err.error.error.message) {
         case "EMAIL_EXISTS":
-          message = "bu mail adresi zaten kullanılıyor."
+          message = "bu mail adresi zaten kullanılıyor.";
           break;
         case "TOO_MANY_ATTEMPTS_TRY_LATER":
-          message = "bir süre bekleyip tekrar deneyiniz."
+          message = "bir süre bekleyip tekrar deneyiniz.";
           break;
         case "EMAIL_NOT_FOUND":
           message = "email adresi bulunamadı";
           break;
         case "INVALID_PASSWORD":
-          message ="hatalı parola";
+          message = "hatalı parola";
           break;
       }
     }
@@ -84,10 +90,9 @@ export class AuthService {
     return throwError(() => message);
   }
 
-
   private handleUser(email: string, localId: string, idToken: string, expiresIn: string) {
-    const expirationDate = new Date(new Date().getTime() + (+expiresIn * 1000))
-        
+    const expirationDate = new Date(new Date().getTime() + (+expiresIn * 1000));
+
     const user = new User(
       email,
       localId,
@@ -96,7 +101,6 @@ export class AuthService {
     );
 
     this.user.next(user);
-
     localStorage.setItem("user", JSON.stringify(user));
   }
 }

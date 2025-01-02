@@ -15,6 +15,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
                         <a routerLink="/products/{{product.id}}" class="btn btn-primary">Ürün Detay</a>
+                        <button (click)="addToCart(product)" class="btn btn-secondary">Sepete Ekle</button>
                     </div>
                 </div>
             </div>

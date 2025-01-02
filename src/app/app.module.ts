@@ -14,6 +14,7 @@ import { ErrorLoggingService } from './error-logging.service';
 import { ErrorLogComponent } from './error-log/error-log.component';
 import { ErrorDisplayComponent } from './error-display/error-display.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -23,7 +24,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     AppComponent,
     ErrorLogComponent,
     ErrorDisplayComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
