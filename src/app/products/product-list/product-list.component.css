@@ -1,0 +1,94 @@
+/* Genel Ayarlar */
+.card {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+  border-radius: 10px;
+  background: #f9f9f9; /* Arka plan rengi */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover animasyonu */
+}
+
+.card:hover {
+  transform: scale(1.02); /* Hafif büyütme */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Hover gölgesi */
+}
+
+.card-title {
+  font-size: 1.2rem;
+  color: #003366; /* Başlık rengi */
+  font-weight: bold;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-body .btn {
+  margin-right: 0.5rem;
+  border-radius: 4px;
+}
+
+.card-body .btn-primary {
+  background: #004d99;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.card-body .btn-primary:hover {
+  background: #003366;
+}
+
+.card-body .btn-secondary {
+  background: #0066cc;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.card-body .btn-secondary:hover {
+  background: #005bb5;
+}
+
+/* Görseller */
+.img-fluid {
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Görselin hafif gölgesi */
+}
+
+/* Yükleniyor Göstergesi */
+.spinner-border {
+  display: block;
+  margin: 2rem auto;
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.3rem;
+}
+
+/* Ürün Bulunamadı Mesajı */
+.alert {
+  text-align: center;
+  font-size: 1.1rem;
+  background: #ffcc00;
+  color: #003366;
+  border: 1px solid #ffc107;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .col-3,
+  .col-9 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .card-body .btn {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+}
