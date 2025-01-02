@@ -1,0 +1,23 @@
+<h2>Admin Error Logs</h2>
+<p>Bu sayfa yalnızca admin kullanıcılar içindir.</p>
+
+<!-- Rastgele hata üretme butonu -->
+<h3>Angular Random Error Generator</h3>
+<button (click)="throwRandomError()" class="btn btn-primary">Generate Random Error</button>
+
+<!-- Hata loglarını tablo olarak göster -->
+<h3>Error Log</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Error Type</th>
+      <th>Frequency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let error of errorLog | keyvalue">
+      <td>{{ error.key }}</td>
+      <td>{{ error.value }}</td>
+    </tr>
+  </tbody>
+</table>
