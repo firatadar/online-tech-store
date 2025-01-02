@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Product } from '../product.model';
 import { ProductService } from '../product.service';
+import { CartService } from '../../cart.service';
+import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Product } from '../product.model';
 
 @Component({
   selector: 'product-list',
@@ -17,7 +17,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartService
   ) { }
 
   ngOnInit(): void {
@@ -32,4 +33,7 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  addToCart(product: Product): void {
+    this.cartService.addItem(product);
+  }
 }
